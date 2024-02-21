@@ -20,6 +20,6 @@ public class Comment {
     @Column(name = "content_id")
     private Long contentId;
 
-    @Column(name = "note", columnDefinition = "TEXT")
+    @Column(name = "note")
     private String note;
 }
