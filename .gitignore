@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 .DS_Store
 .env
-
+/node_modules
 ### STS ###
 .apt_generated
 .classpath
@@ -29,6 +29,7 @@ out/
 !**/src/test/**/out/
 
 ### NetBeans ###
+/node_modules
 /nbproject/private/
 /nbbuild/
 /dist/
