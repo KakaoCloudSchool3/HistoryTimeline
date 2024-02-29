@@ -1,6 +1,6 @@
 package kakao.school.what.web;
 
-import kakao.school.what.dto.CountryDto;
+import kakao.school.what.dto.response.CountryResponseDto;
 import kakao.school.what.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,11 +24,11 @@ public class CountryController {
     private CountryService countryService;
 
     @GetMapping("/{countryId}")
-    public ResponseEntity<CountryDto> getCountryById(@PathVariable Long countryId) {
-        CountryDto countryDto = countryService.getCountryById(countryId);
+    public ResponseEntity<CountryResponseDto> getCountryById(@PathVariable Long countryId) {
+        CountryResponseDto countryResponseDto = countryService.getCountryById(countryId);
 
-        if (countryDto != null) {
-            return new ResponseEntity<>(countryDto, HttpStatus.OK);
+        if (countryResponseDto != null) {
+            return new ResponseEntity<>(countryResponseDto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

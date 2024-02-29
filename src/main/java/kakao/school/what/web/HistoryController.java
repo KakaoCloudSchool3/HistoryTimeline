@@ -30,4 +30,5 @@ public class HistoryController {
         Pageable pageable = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "createdAt"));
         return historyService.listHistoryByCountryId(countryId, pageable);
     }
+
 }
