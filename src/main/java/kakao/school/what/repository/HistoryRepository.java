@@ -9,5 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HistoryRepository extends JpaRepository<History, Long> {
     // 국가 id에 따라 history를 page로 불러옴
+    // 예시용이므로 추후 삭제하겠습니다.
     Page<History> findAllByCountryId(Long countryId, Pageable pageable);
+
+    // year 이후 한국 History를 Page로 불러옴
+    Page<History> findAllByCountryIdAndYearGreaterThanEqual(Long countryId, Integer year, Pageable pageable);
 }
