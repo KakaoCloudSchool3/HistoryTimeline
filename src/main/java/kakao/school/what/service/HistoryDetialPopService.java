@@ -17,8 +17,8 @@ public class HistoryDetialPopService {
     }
 
 
-    public HistoryDetailPopDTO getHistoryDetailPopDTO(Long historyId) {
-        HistoryDetail historyd = historyDetailPopRepository.findById(historyId).orElse(null);
+    public HistoryDetailPopDTO getHistoryDetailPopDTO(Long historyDetailId) {
+        HistoryDetail historyd = historyDetailPopRepository.findById(historyDetailId).orElse(null);
 
         if (historyd == null) {
             return null;

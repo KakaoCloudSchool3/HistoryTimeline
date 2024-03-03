@@ -22,9 +22,9 @@ public class HistoryDetailPopController {
     }
 
 
-    @GetMapping("/{historyId}")
-    public ResponseEntity<HistoryDetailPopDTO> getHistoryDetailPopDTO(@PathVariable Long historyId) {
-        HistoryDetailPopDTO historyDetailPopDTO = historyDetialPopService.getHistoryDetailPopDTO(historyId);
+    @GetMapping("/{historyDetailId}")
+    public ResponseEntity<HistoryDetailPopDTO> getHistoryDetailPopDTO(@PathVariable Long historyDetailId) {
+        HistoryDetailPopDTO historyDetailPopDTO = historyDetialPopService.getHistoryDetailPopDTO(historyDetailId);
         if (historyDetailPopDTO == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

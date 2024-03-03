@@ -9,5 +9,6 @@ public class HistoryDetailPopDTO {
     private String detail;
 
     public HistoryDetailPopDTO(String detail) {
+        this.detail = detail;
     }
 }

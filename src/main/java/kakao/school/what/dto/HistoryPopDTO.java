@@ -16,7 +16,7 @@ public class HistoryPopDTO {
 
 
 
-    public HistoryPopDTO(String title, Integer year, Integer month, Integer day, String imgUrl, String detail, String contentImgUrl) {
+    public HistoryPopDTO(String title, Integer year, Integer month, Integer day, String imgUrl, String detail) {
         this.title = title;
         this.year = year;
         this.month = month;

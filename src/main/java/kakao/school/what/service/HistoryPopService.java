@@ -30,10 +30,7 @@ public class HistoryPopService {
                 history.getMonth(),
                 history.getDay(),
                 history.getImg_url(),
-                history.getBrief(),
-
-                null
-
+                history.getBrief()
         );
     }
 }
