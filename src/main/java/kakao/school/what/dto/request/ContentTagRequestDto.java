@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class ContentTagRequestDto {
-    private Long serial;
     private Long tagId;
     private Long contentId;
-    private LocalDateTime created_At;
 }

@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class HistoryRequestDto {
-    private Long historyId;
     private String title;
     private int priority;
     private int countryId;
@@ -17,8 +16,6 @@ public class HistoryRequestDto {
     private int month;
     private int day;
     private String imgUrl;
-    private LocalDateTime created_At;
-    private LocalDateTime updated_At;
 
     private HistoryDetailRequestDto historyDetailRequestDto;
 }
