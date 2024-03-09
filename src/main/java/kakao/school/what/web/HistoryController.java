@@ -53,7 +53,7 @@ public class HistoryController {
             @RequestParam(value = "countryId") long countryId,
             @RequestParam(value = "page") int page
     ) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "year", "month", "day", "createdAt"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "year", "month", "day", "createdAt"));
         return historyService.listHistoryDtoByYearAndCountryId(year, countryId, pageable);
     }
 
