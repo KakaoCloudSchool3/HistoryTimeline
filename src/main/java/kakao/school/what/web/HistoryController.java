@@ -44,4 +44,16 @@ public class HistoryController {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "year", "month", "day", "createdAt"));
         return historyService.listKoreaHistoryDtoByYear(year, pageable);
     }
+
+    @GetMapping("/timeline/compareKorea")
+    @ResponseBody
+    // 년도, 비교 나라 id를 입력받아 둘의 역사를 날짜 순으로 반환
+    public Page<HistoryResponseTimelineDto> getHistoryResponseByYearAndCountryId(
+            @RequestParam(value = "year") int year,
+            @RequestParam(value = "countryId") long countryId,
+            @RequestParam(value = "page") int page
+    ) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "year", "month", "day", "createdAt"));
+        return historyService.listHistoryDtoByYearAndCountryId(year, countryId, pageable);
+    }
 }
