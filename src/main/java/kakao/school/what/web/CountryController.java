@@ -1,5 +1,6 @@
 package kakao.school.what.web;
 
+
 import kakao.school.what.dto.response.CountryResponseDto;
 import kakao.school.what.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import kakao.school.what.domain.Country;
+import kakao.school.what.dto.CountryResponseDto;
+import kakao.school.what.service.CountryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 /**
  * @author minsun
  * @description countryId에 해당하는 나라 정보(countryId, name) 출력
@@ -19,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/countries")
+@Tag(name = "CountryController", description = "Country 관련 Controller")
 public class CountryController {
     @Autowired
     private CountryService countryService;
@@ -33,5 +46,10 @@ public class CountryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+  
+    @GetMapping("/countries")
+    @ResponseBody
+    public List<CountryResponseDto> getCountryList() {
+        return countryService.listCountryDto();
+    }
 }
-
