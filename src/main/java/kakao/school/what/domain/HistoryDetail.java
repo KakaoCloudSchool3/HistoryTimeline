@@ -13,13 +13,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class HistoryDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "history detail_id")
+    @Column(name = "history_detail_id")
     private Integer historyDetailId;
 
     @Column(name = "history_id")
     private Long historyId;
 
-    @Column(name = "deatil")
+    @Column(name = "deatail")
     private String detail;
 
 }

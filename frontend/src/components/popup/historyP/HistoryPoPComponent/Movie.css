@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans&display=swap');
+
+.col-md-4:hover {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2); 
+    -o-transform: scale(1.2);
+    transition: transform 0.5s; 
+}
+
+.container2 {
+    background-color: #264364;
+}
+
+.movie-frame {
+    border: 8px solid #f4e9c9;
+    border-radius: 10px; 
+    
+}
+
+.col-md-4 {
+
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Google Sans', sans-serif;
+}
+.MF {
+    display: block; 
+    margin: 0 auto; 
+}
+.slick-prev {
+    left: -30px; 
+}
+
+.slick-next {
+    right: -30px; 
+}
+.container2 {
+    
+    width: 95%; 
+    margin: 0 auto; 
+}
