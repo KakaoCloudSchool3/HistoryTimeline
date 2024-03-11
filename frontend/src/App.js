@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import ContentsPopup from "./components/popup/contentP/ContentsPopup";
 import VideoZoomInOut from "./components/main/VideoZoomInOut";
 import MapMain from "./components/main/MapMain";
 import AdminInsert from "./components/admain/insert/AdminInsert";
@@ -17,6 +19,7 @@ function App() {
                 <Route path="/map" element={<MapMain />} />
                 <Route path="/adminInsert" element={<AdminInsert/>} />
                 <Route path="/timeline" element={<Timeline />} />
+                <Route path="/" element={<ContentsPopup />} />
             </Routes>
         </Router>
     );
