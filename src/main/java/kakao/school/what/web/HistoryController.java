@@ -21,19 +21,6 @@ import java.util.List;
 public class HistoryController {
     @Autowired
     private HistoryService historyService;
-
-    // 국가 id, 페이지 번호, 페이지 당 개수를 입력으로 받아 history를 반환합니다.
-    // 예시 용, 추후에 삭제하도록 하겠습니다.
-    @GetMapping("/history")
-    public Page<History> getHistoryListByCountryId(
-            @RequestParam(value = "countryId", required = false) Long countryId,
-            @RequestParam(value = "page") int page,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "10") int pageSize
-    ) {
-        Pageable pageable = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.DESC, "createdAt"));
-        return historyService.listHistoryByCountryId(countryId, pageable);
-    }
-
     @GetMapping("/timeline/korea")
     @ResponseBody
     // 년도를 입력받아 이후 한국 역사를 날짜순으로 반환

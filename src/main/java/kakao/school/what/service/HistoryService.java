@@ -16,12 +16,6 @@ public class HistoryService {
     @Autowired
     private HistoryRepository historyRepository;
 
-    // 국가 id에 따라 history를 page로 불러옴
-    // 예시 용으로 추후 삭제하겠습니다.
-    public Page<History> listHistoryByCountryId(Long countryId, Pageable pageable) {
-        return historyRepository.findAllByCountryId(countryId, pageable);
-    }
-
     // 한국 역사만 History Response Timeline Dto로 반환하는 메소드
     public Page<HistoryResponseTimelineDto> listKoreaHistoryDtoByYear(Integer year, Pageable pageable) {
         return historyEntityToTimelineDto(historyRepository.findAllByCountryIdAndYearGreaterThanEqual(410L, year, pageable));
