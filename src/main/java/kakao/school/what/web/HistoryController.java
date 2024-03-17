@@ -3,6 +3,7 @@ package kakao.school.what.web;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kakao.school.what.domain.History;
 import kakao.school.what.dto.HistoryResponseTimelineDto;
+import kakao.school.what.dto.response.HistoryMainLineDto;
 import kakao.school.what.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,6 +46,10 @@ public class HistoryController {
         return historyService.listKoreaHistoryDtoByYear(year, pageable);
     }
 
+    @GetMapping("/priority/korea")
+    public List<HistoryMainLineDto> getPriorityOneInKorea() {
+        return historyService.getPriorityOneInKorea();
+    }
     @GetMapping("/timeline/compareKorea")
     @ResponseBody
     // 년도, 비교 나라 id를 입력받아 둘의 역사를 날짜 순으로 반환

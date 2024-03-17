@@ -14,6 +14,8 @@ public interface HistoryRepository extends JpaRepository<History, Long> {
     // 예시용이므로 추후 삭제하겠습니다.
     Page<History> findAllByCountryId(Long countryId, Pageable pageable);
 
+    List<History> findByCountryIdAndPriority(Long countryId, Integer priority, Pageable pageable);
+
     // year 이후 한국 History를 Page로 불러옴
     Page<History> findAllByCountryIdAndYearGreaterThanEqual(Long countryId, Integer year, Pageable pageable);
 
