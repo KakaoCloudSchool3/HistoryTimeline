@@ -19,7 +19,7 @@ public class HistoryDetail {
     @Column(name = "history_id")
     private Long historyId;
 
-    @Column(name = "deatail")
+    @Column(name = "detail")
     private String detail;
 
 }
