@@ -44,4 +44,14 @@ public class HistoryController {
         return historyService.listHistoryDtoByYearAndCountryId(year, countryId, pageable);
     }
 
+    @GetMapping("/adminList/list")
+    @ResponseBody
+    // 관리자 리스트 페이지에서 역사를 날짜 순으로 반환
+    public Page<HistoryResponseTimelineDto> getHistoryResponse(
+            @RequestParam(value = "page") int page
+    ) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "year", "month", "day", "createdAt"));
+        return historyService.listHistoryDto(pageable);
+    }
+
 }

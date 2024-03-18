@@ -29,6 +29,11 @@ public class HistoryService {
         return historyEntityToTimelineDto(historyRepository.findAllByCountryIdInAndYearGreaterThanEqual(countryIds, year, pageable));
     }
 
+    // 역사 리스트를 불러와 History Response Timeline Dto로 반환하는 메소드
+    public Page<HistoryResponseTimelineDto> listHistoryDto(Pageable pageable) {
+        return historyEntityToTimelineDto(historyRepository.findAll(pageable));
+    }
+
     // History Entity Page를 History Response Timeline Dto로 변경하는 메소드
     private Page<HistoryResponseTimelineDto> historyEntityToTimelineDto(Page<History> entityPage) {
         Page<HistoryResponseTimelineDto> dtoPage = entityPage

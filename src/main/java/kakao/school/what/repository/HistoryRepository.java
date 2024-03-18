@@ -16,4 +16,7 @@ public interface HistoryRepository extends JpaRepository<History, Long> {
 
     // year 이후 한국과 해당 나라 History를 Page로 불러옴
     Page<History> findAllByCountryIdInAndYearGreaterThanEqual(List<Long> countryIds, Integer year, Pageable pageable);
+
+    // 모든 History를 Page로 불러옴
+    Page<History> findAll(Pageable pageable);
 }
