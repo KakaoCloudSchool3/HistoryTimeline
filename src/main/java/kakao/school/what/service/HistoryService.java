@@ -1,14 +1,20 @@
 package kakao.school.what.service;
 
+import jakarta.transaction.Transactional;
 import kakao.school.what.domain.History;
+import kakao.school.what.domain.HistoryDetail;
 import kakao.school.what.dto.HistoryResponseTimelineDto;
+import kakao.school.what.dto.request.HistoryDetailRequestDto;
+import kakao.school.what.dto.request.HistoryRequestDto;
 import kakao.school.what.dto.response.HistoryMainLineDto;
+import kakao.school.what.repository.HistoryDetailRepository;
 import kakao.school.what.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,6 +25,8 @@ import java.util.stream.Collectors;
 public class HistoryService {
     @Autowired
     private HistoryRepository historyRepository;
+    @Autowired
+    private HistoryDetailRepository historyDetailRepository;
 
     public List<History> getHistory(Long historyId){
         return historyRepository.findByHistoryId(historyId);
@@ -75,5 +83,40 @@ public class HistoryService {
                                 entity.getImgUrl()
                         ));
         return dtoPage;
+    }
+
+    @Transactional
+    public void saveHistory(HistoryRequestDto requestDto){
+        Pair<History, HistoryDetail> entities = dtoToHistoryEntities(requestDto);
+
+        History savedHistory = historyRepository.save(entities.getFirst());
+        HistoryDetail historyDetail = entities.getSecond();
+        historyDetail.setHistoryId(savedHistory.getHistoryId());
+        historyDetailRepository.save(historyDetail);
+    }
+
+    private Pair<History, HistoryDetail> dtoToHistoryEntities(HistoryRequestDto requestDto) {
+        History history = new History();
+        history.setTitle(requestDto.getTitle());
+        history.setPriority(requestDto.getPriority());
+        history.setCountryId(requestDto.getCountryId());
+        history.setBrief(requestDto.getBrief());
+        history.setYear(requestDto.getYear());
+        history.setMonth(requestDto.getMonth());
+        history.setDay(requestDto.getDay());
+        history.setImgUrl(requestDto.getImgUrl());
+        HistoryDetail historyDetail = dtoToHistoryDetailEntity(requestDto);
+
+        return Pair.of(history, historyDetail);
+    }
+
+    private HistoryDetail dtoToHistoryDetailEntity(HistoryRequestDto requestDto) {
+        HistoryDetailRequestDto detailRequestDto = requestDto.getHistoryDetailRequestDto();
+        if (detailRequestDto == null) {
+            return null;
+        }
+        HistoryDetail historyDetail = new HistoryDetail();
+        historyDetail.setDetail(detailRequestDto.getDetail());
+        return historyDetail;
     }
 }

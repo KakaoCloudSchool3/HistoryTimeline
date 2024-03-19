@@ -2,6 +2,7 @@ package kakao.school.what.web;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kakao.school.what.domain.History;
+import kakao.school.what.domain.HistoryDetail;
 import kakao.school.what.dto.HistoryResponseTimelineDto;
 import kakao.school.what.dto.request.HistoryRequestDto;
 import kakao.school.what.dto.response.HistoryMainLineDto;
@@ -11,10 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -68,6 +66,11 @@ public class HistoryController {
     ) {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "year", "month", "day", "createdAt"));
         return historyService.listHistoryDtoByYearAndCountryId(year, countryId, pageable);
+    }
+
+    @PostMapping("/saveHistory")
+    public  void saveHistory(@RequestBody HistoryRequestDto requestDto){
+        historyService.saveHistory(requestDto);
     }
 
 }
