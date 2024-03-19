@@ -34,6 +34,7 @@ public class HistoryController {
         return historyService.listHistoryByCountryId(countryId, pageable);
     }
 
+    // historyid에 해당되는 데이터 반환
     @GetMapping("/history/one")
     public List<History> getHistory(@RequestParam(value = "historyId", required = false) Long historyId) {
         return historyService.getHistory(historyId);
@@ -68,6 +69,7 @@ public class HistoryController {
         return historyService.listHistoryDtoByYearAndCountryId(year, countryId, pageable);
     }
 
+    // POST 방식 : history 데이터 저장함
     @PostMapping("/saveHistory")
     public  void saveHistory(@RequestBody HistoryRequestDto requestDto){
         historyService.saveHistory(requestDto);
