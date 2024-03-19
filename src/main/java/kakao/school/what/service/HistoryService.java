@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,12 @@ public class HistoryService {
     // 역사 리스트를 불러와 History Response Timeline Dto로 반환하는 메소드
     public Page<HistoryResponseTimelineDto> listHistoryDto(Pageable pageable) {
         return historyEntityToTimelineDto(historyRepository.findAll(pageable));
+    }
+
+    // 역사 아이디로 History를 삭제하는 메소드
+    @Transactional
+    public void deleteHistoryByHistoryId(Long historyId) {
+        historyRepository.delete(historyRepository.findByHistoryId(historyId));
     }
 
     // History Entity Page를 History Response Timeline Dto로 변경하는 메소드

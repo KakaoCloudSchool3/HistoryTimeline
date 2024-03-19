@@ -19,4 +19,7 @@ public interface HistoryRepository extends JpaRepository<History, Long> {
 
     // 모든 History를 Page로 불러옴
     Page<History> findAll(Pageable pageable);
+
+    // History Id로 History를 불러옴
+    History findByHistoryId(Long HistoryId);
 }

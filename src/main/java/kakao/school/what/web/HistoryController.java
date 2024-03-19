@@ -9,10 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -52,6 +49,13 @@ public class HistoryController {
     ) {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "year", "month", "day", "createdAt"));
         return historyService.listHistoryDto(pageable);
+    }
+
+    @DeleteMapping("/adminList/delete")
+    public void deleteHistory(
+            @RequestParam(value = "historyId") Long historyId
+    ) {
+        historyService.deleteHistoryByHistoryId(historyId);
     }
 
 }
