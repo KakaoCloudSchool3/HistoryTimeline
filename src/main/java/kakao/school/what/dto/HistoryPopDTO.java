@@ -24,5 +24,6 @@ public class HistoryPopDTO {
         this.brief = brief;
 
 
+
     }
 }

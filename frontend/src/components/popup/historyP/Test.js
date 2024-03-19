@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import HistoryPop from './HistoryPop';
+import HistoryPoptest2 from './HistoryPoptest2';
 import "./Test.css";
+import HistoryPoptest from './HistoryPoptest';
 
 const Modal = ({ isOpen, onClose }) => {
   const modalRef = useRef();
@@ -23,7 +24,7 @@ const Modal = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay">
       <div ref={modalRef} className="modal">
-        <HistoryPop></HistoryPop>
+        <HistoryPoptest2></HistoryPoptest2>
       </div>
     </div>
   );

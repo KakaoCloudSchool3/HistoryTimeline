@@ -47,7 +47,7 @@ function HistoryPop() {
   return (
     <div className="HistoryPop">
       <div className="history-container">
-        <HistoryCom imageUrl={historyData.imageUrl} title={historyData.title} content={historyData.content} />
+        <HistoryCom imageUrl={historyData.imageUrl} title={historyData.title} content={historyData.content}  />
       </div>
      
       <div className="movie-container">

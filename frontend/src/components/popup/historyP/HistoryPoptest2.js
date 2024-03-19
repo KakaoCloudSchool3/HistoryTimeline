@@ -27,13 +27,17 @@ const movies = [
 
 const HistoryPoptest2 = () => {
     const [historyData, setHistoryData] = useState(null);
-    const historyId = 1298;
+    const historyId = 1299;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:8081/historyPop/${historyId}`);
                 const transformedData = { ...response.data, content: response.data.brief };
+                
+                // 추가: 백엔드로부터 받은 detail 데이터를 프론트엔드 데이터에 추가
+                transformedData.detail = response.data.detail;
+                
                 setHistoryData(transformedData);
             } catch (error) {
                 console.error('Error fetching history data:', error);
@@ -47,7 +51,12 @@ const HistoryPoptest2 = () => {
         <div className="HistoryPop">
             <div className="history-container">
                 {historyData && (
-                    <HistoryCom imageUrl={historyData.imageUrl} title={historyData.title} content={[historyData.content]} />
+                    <HistoryCom 
+                        imageUrl={historyData.imageUrl} 
+                        title={historyData.title} 
+                        content={[historyData.content]} 
+                        detail={historyData.detail}  // 변경: detail 데이터 추가
+                    />
                 )}
             </div>
             <div className="movie-container">
@@ -58,3 +67,4 @@ const HistoryPoptest2 = () => {
 };
 
 export default HistoryPoptest2;
+

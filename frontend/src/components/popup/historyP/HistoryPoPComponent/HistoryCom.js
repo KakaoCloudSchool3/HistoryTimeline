@@ -17,7 +17,7 @@ const AnimatedText = ({ children }) => {
     );
 };
 
-const HistoryCom = ({ imageUrl, title, content }) => {
+const HistoryCom = ({ imageUrl, title, content, detail}) => {
     // 이미지 URL을 배열로 변환
     const images = Array.isArray(imageUrl) ? imageUrl : [imageUrl];
 
@@ -63,6 +63,16 @@ const HistoryCom = ({ imageUrl, title, content }) => {
                             <p key={index}>{paragraph}</p>
                         ))}
                     </div>
+                    <div className="historyMemo2">
+                        {detail && (
+                            <div>                        
+                                {detail.map((item, index) => (
+                                    <p key={index}>{item}</p>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
                 </div>
             </div>
         </div>

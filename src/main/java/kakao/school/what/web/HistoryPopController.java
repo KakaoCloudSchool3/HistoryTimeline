@@ -1,5 +1,6 @@
 package kakao.school.what.web;
 
+import kakao.school.what.dto.HistoryDetailPopDTO;
 import kakao.school.what.dto.HistoryPopDTO;
 import kakao.school.what.service.HistoryPopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,14 @@ public class HistoryPopController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(historyPopDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/detail/{historyId}")
+    public ResponseEntity<HistoryDetailPopDTO> getHistoryDetail(@PathVariable Long historyId) {
+        HistoryDetailPopDTO historyDetailPopDTO = historyPopService.getHistoryDetailPopDTO(historyId);
+        if (historyDetailPopDTO == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(historyDetailPopDTO, HttpStatus.OK);
     }
 }
