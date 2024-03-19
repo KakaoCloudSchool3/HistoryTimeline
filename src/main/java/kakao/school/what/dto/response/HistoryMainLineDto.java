@@ -9,7 +9,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class CountryResponseDto {
-    private Long countryId;
-    private String name;
+public class HistoryMainLineDto {
+    private String title;
+    private int priority;
+    private String brief;
+    private int year;
+    private String imgUrl;
 }

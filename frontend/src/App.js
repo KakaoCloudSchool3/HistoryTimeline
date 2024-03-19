@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import ContentsPopup from "./components/popup/contentP/ContentsPopup";
+//import ContentsPopup from "./components/popup/contentP/ContentsPopup";
 import VideoZoomInOut from "./components/main/VideoZoomInOut";
 import MapMain from "./components/main/MapMain";
 import AdminInsert from "./components/admain/insert/AdminInsert";
+import MapChartV2 from "./components/main/MapChartV2";
 import Timeline from "./pages/Timeline";
 
 /*
@@ -17,9 +18,10 @@ function App() {
             <Routes>
                 <Route path="/" element={<VideoZoomInOut />} />
                 <Route path="/map" element={<MapMain />} />
+                <Route path="/mapv2" element={<MapChartV2 />} />
                 <Route path="/adminInsert" element={<AdminInsert/>} />
                 <Route path="/timeline" element={<Timeline />} />
-                <Route path="/" element={<ContentsPopup />} />
+                {/* <Route path="/contents" element={<ContentsPopup />} /> */}
             </Routes>
         </Router>
     );
