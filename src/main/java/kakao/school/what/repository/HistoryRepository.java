@@ -13,7 +13,7 @@ import java.util.List;
 public interface HistoryRepository extends JpaRepository<History, Long> {
 
     //
-    List<History> findByHistoryId(Long historyId);
+    List<History> findAllByHistoryId(Long historyId);
 
     // 역사데이터 우선순위에 따라 불러옴
     List<History> findByCountryIdAndPriority(Long countryId, Integer priority, Pageable pageable);
