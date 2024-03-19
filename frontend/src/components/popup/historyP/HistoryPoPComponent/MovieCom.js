@@ -1,13 +1,11 @@
 import React from 'react';
-import { Navbar, Container, Nav } from 'react-bootstrap';
-import { motion, useScroll } from "framer-motion";
-import Fade from 'react-reveal/Fade';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Movie.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Fade from 'react-reveal/Fade';
 
 const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -46,7 +44,7 @@ const MovieCom = ({ movies }) => {
             <h3 className='movieTitle'>관련 영화</h3>
             
             <Slider {...sliderSettings} className="moviePosterSlide">
-                {movies.map((movie, index) => (
+                {movies && movies.map((movie, index) => (
                     <div className="moviePoster" key={index}>
                         <Fade bottom delay={index * 500} >
                             <img className='moviePosterFrame'

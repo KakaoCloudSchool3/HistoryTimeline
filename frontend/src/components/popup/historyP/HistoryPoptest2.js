@@ -1,46 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import HistoryCom from './HistoryPoPComponent/HistoryCom';
-import HistoryPop from './HistoryPop';
 import MovieCom from './HistoryPoPComponent/MovieCom';
-import "./HistoryPop.css"
-
-
-const movies = [
-    {
-      title: "서울의 봄 (2023)",
-      imageUrl: "https://img.movist.com/?img=/x00/05/96/41_p1.jpg"
-    },
-    {
-      title: "남산의 부장들 (2020)",
-      imageUrl: "https://img.movist.com/?img=/x00/05/24/83_p1.jpg"
-    },
-    {
-      title: "택시운전사 (2017)",
-      imageUrl: "https://img.movist.com/?img=/x00/04/81/75_p1.jpg"
-    },
-    {
-      title: "1987 (2017)",
-      imageUrl: "https://img.movist.com/?img=/x00/04/93/47_p1.jpg"
-    }
-];
+import "./HistoryPop.css";
 
 const HistoryPoptest2 = () => {
     const [historyData, setHistoryData] = useState(null);
-    const historyId = 1299;
+    const [moviesData, setMoviesData] = useState([]);
+
+    const historyId = 1499;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/historyPop/${historyId}`);
-                const transformedData = { ...response.data, content: response.data.brief };
-                
-                // 추가: 백엔드로부터 받은 detail 데이터를 프론트엔드 데이터에 추가
-                transformedData.detail = response.data.detail;
-                
-                setHistoryData(transformedData);
+                // 백엔드에서 히스토리 데이터 가져오기
+                const historyResponse = await axios.get(`http://localhost:8081/historyPop/${historyId}`);
+                const transformedHistoryData = { ...historyResponse.data, content: historyResponse.data.brief };
+                transformedHistoryData.detail = historyResponse.data.detail;
+                setHistoryData(transformedHistoryData);
+
+                // 백엔드에서 영화 데이터 가져오기
+                const moviesResponse = await axios.get('http://localhost:8081/movies');
+                setMoviesData(moviesResponse.data);
             } catch (error) {
-                console.error('Error fetching history data:', error);
+                console.error('Error fetching data:', error);
             }
         };
 
@@ -50,21 +33,22 @@ const HistoryPoptest2 = () => {
     return (
         <div className="HistoryPop">
             <div className="history-container">
+                {/* HistoryCom 컴포넌트 렌더링 */}
                 {historyData && (
                     <HistoryCom 
                         imageUrl={historyData.imageUrl} 
                         title={historyData.title} 
                         content={[historyData.content]} 
-                        detail={historyData.detail}  // 변경: detail 데이터 추가
+                        detail={historyData.detail} 
                     />
                 )}
             </div>
             <div className="movie-container">
-                <MovieCom movies={movies} />
+                {/* MovieCom 컴포넌트 렌더링 및 moviesData 전달 */}
+                <MovieCom movies={moviesData} />
             </div>
         </div>
     );
 };
 
 export default HistoryPoptest2;
-
