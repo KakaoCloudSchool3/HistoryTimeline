@@ -12,6 +12,5 @@ public class HistoryRequestDto {
     private int month;
     private int day;
     private String imgUrl;
-
-    private HistoryDetailRequestDto historyDetailRequestDto;
+    private String detail;
 }

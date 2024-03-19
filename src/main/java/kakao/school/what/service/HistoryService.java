@@ -9,6 +9,8 @@ import kakao.school.what.dto.request.HistoryRequestDto;
 import kakao.school.what.dto.response.HistoryMainLineDto;
 import kakao.school.what.repository.HistoryDetailRepository;
 import kakao.school.what.repository.HistoryRepository;
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Log4j2
 public class HistoryService {
     @Autowired
     private HistoryRepository historyRepository;
@@ -85,17 +88,24 @@ public class HistoryService {
         return dtoPage;
     }
 
+    /**
+     *
+     * history 데이터를 저장함.
+     * requestDto = 웹사이트에서 보내진 데이터
+     * history, historydetail 각각에 맞게 데이터를 저장한다.
+     */
     @Transactional
     public void saveHistory(HistoryRequestDto requestDto){
-        Pair<History, HistoryDetail> entities = dtoToHistoryEntities(requestDto);
+        History history = dtoToHistoryEntities(requestDto);
+        History savedHistory = historyRepository.save(history);
+        log.info("^MS^ save history");
+        Long savedHistoryId = savedHistory.getHistoryId();
 
-        History savedHistory = historyRepository.save(entities.getFirst());
-        HistoryDetail historyDetail = entities.getSecond();
-        historyDetail.setHistoryId(savedHistory.getHistoryId());
+        HistoryDetail historyDetail = dtoToHistoryDetailEntity(requestDto, savedHistoryId);
         historyDetailRepository.save(historyDetail);
     }
 
-    private Pair<History, HistoryDetail> dtoToHistoryEntities(HistoryRequestDto requestDto) {
+    private History dtoToHistoryEntities(HistoryRequestDto requestDto) {
         History history = new History();
         history.setTitle(requestDto.getTitle());
         history.setPriority(requestDto.getPriority());
@@ -105,18 +115,14 @@ public class HistoryService {
         history.setMonth(requestDto.getMonth());
         history.setDay(requestDto.getDay());
         history.setImgUrl(requestDto.getImgUrl());
-        HistoryDetail historyDetail = dtoToHistoryDetailEntity(requestDto);
-
-        return Pair.of(history, historyDetail);
+        log.info(history);
+        return history;
     }
 
-    private HistoryDetail dtoToHistoryDetailEntity(HistoryRequestDto requestDto) {
-        HistoryDetailRequestDto detailRequestDto = requestDto.getHistoryDetailRequestDto();
-        if (detailRequestDto == null) {
-            return null;
-        }
+    private HistoryDetail dtoToHistoryDetailEntity(HistoryRequestDto requestDto, Long historyId) {
         HistoryDetail historyDetail = new HistoryDetail();
-        historyDetail.setDetail(detailRequestDto.getDetail());
+        historyDetail.setHistoryId(historyId);
+        historyDetail.setDetail(requestDto.getDetail());
         return historyDetail;
     }
 }

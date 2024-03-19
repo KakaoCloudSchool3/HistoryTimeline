@@ -13,22 +13,19 @@ public class HistoryDetailService {
     @Autowired
     private HistoryDetailRepository historyDetailRepository;
 
+    // historyid에 해당하는 detail 반환
     public List<HistoryDetail> getHistoryDetail(Long historyId){
         return historyDetailRepository.findByHistoryId(historyId);
     };
-    public HistoryDetailService(HistoryDetailRepository historyDetailRepository) {
-        this.historyDetailRepository = historyDetailRepository;
-    }
-
 
     public HistoryDetailPopDTO getHistoryDetailPopDTO(Long historyDetailId) {
-        HistoryDetail historyd = historyDetailRepository.findById(historyDetailId).orElse(null);
+        HistoryDetail historyDetail = historyDetailRepository.findById(historyDetailId).orElse(null);
 
-        if (historyd == null) {
+        if (historyDetail == null) {
             return null;
         }
         return new HistoryDetailPopDTO(
-                historyd.getDetail()
+                historyDetail.getDetail()
         );
     }
 }
