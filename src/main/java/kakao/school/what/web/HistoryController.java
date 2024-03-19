@@ -21,7 +21,7 @@ import java.util.List;
 public class HistoryController {
     @Autowired
     private HistoryService historyService;
-
+  
     // 국가 id, 페이지 번호, 페이지 당 개수를 입력으로 받아 history를 반환합니다.
     // 예시 용, 추후에 삭제하도록 하겠습니다.
     @GetMapping("/history")
@@ -65,14 +65,32 @@ public class HistoryController {
             @RequestParam(value = "countryId") long countryId,
             @RequestParam(value = "page") int page
     ) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "year", "month", "day", "createdAt"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "year", "month", "day", "createdAt"));
         return historyService.listHistoryDtoByYearAndCountryId(year, countryId, pageable);
     }
 
+    @GetMapping("/adminList/list")
+    @ResponseBody
+    // 관리자 리스트 페이지에서 역사를 날짜 순으로 반환
+    public Page<HistoryResponseTimelineDto> getHistoryResponse(
+            @RequestParam(value = "page") int page
+    ) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "year", "month", "day", "createdAt"));
+        return historyService.listHistoryDto(pageable);
+    }
+
+    @DeleteMapping("/adminList/delete")
+    public void deleteHistory(
+            @RequestParam(value = "historyId") Long historyId
+    ) {
+        historyService.deleteHistoryByHistoryId(historyId);
+    }
+  
     // POST 방식 : history 데이터 저장함
     @PostMapping("/saveHistory")
     public  void saveHistory(@RequestBody HistoryRequestDto requestDto){
         historyService.saveHistory(requestDto);
+
     }
 
 }

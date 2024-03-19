@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,12 +52,6 @@ public class HistoryService {
                 .collect(Collectors.toList());
     }
 
-    // 국가 id에 따라 history를 page로 불러옴
-    // 예시 용으로 추후 삭제하겠습니다.
-    public Page<History> listHistoryByCountryId(Long countryId, Pageable pageable) {
-        return historyRepository.findAllByCountryId(countryId, pageable);
-    }
-
     // 한국 역사만 History Response Timeline Dto로 반환하는 메소드
     public Page<HistoryResponseTimelineDto> listKoreaHistoryDtoByYear(Integer year, Pageable pageable) {
         return historyEntityToTimelineDto(historyRepository.findAllByCountryIdAndYearGreaterThanEqual(410L, year, pageable));
@@ -68,6 +63,17 @@ public class HistoryService {
         countryIds.add(410L); // Korea Id
         countryIds.add(countryId);
         return historyEntityToTimelineDto(historyRepository.findAllByCountryIdInAndYearGreaterThanEqual(countryIds, year, pageable));
+    }
+
+    // 역사 리스트를 불러와 History Response Timeline Dto로 반환하는 메소드
+    public Page<HistoryResponseTimelineDto> listHistoryDto(Pageable pageable) {
+        return historyEntityToTimelineDto(historyRepository.findAll(pageable));
+    }
+
+    // 역사 아이디로 History를 삭제하는 메소드
+    @Transactional
+    public void deleteHistoryByHistoryId(Long historyId) {
+        historyRepository.delete(historyRepository.findByHistoryId(historyId));
     }
 
     // History Entity Page를 History Response Timeline Dto로 변경하는 메소드
