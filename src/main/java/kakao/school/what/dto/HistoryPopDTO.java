@@ -12,17 +12,17 @@ public class HistoryPopDTO {
     private Integer month;
     private Integer day;
     private String img_url;
-    private String breif;
+    private String brief;
 
 
 
-    public HistoryPopDTO(String title, Integer year, Integer month, Integer day, String imgUrl, String detail) {
+    public HistoryPopDTO(String title, Integer year, Integer month, Integer day, String brief) {
         this.title = title;
         this.year = year;
         this.month = month;
         this.day = day;
-        this.breif = breif;
-        this.img_url = img_url;
+        this.brief = brief;
+
 
     }
 }
