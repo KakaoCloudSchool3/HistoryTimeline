@@ -28,7 +28,8 @@ public class HistoryPopService {
                 history.getYear(),
                 history.getMonth(),
                 history.getDay(),
-                history.getBrief()
+                history.getBrief(),
+                history.getImgUrl()
         );
     }
 

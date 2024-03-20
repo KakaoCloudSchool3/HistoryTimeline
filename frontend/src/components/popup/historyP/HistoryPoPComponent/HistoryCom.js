@@ -17,9 +17,9 @@ const AnimatedText = ({ children }) => {
     );
 };
 
-const HistoryCom = ({ imageUrl, title, content, detail}) => {
+const HistoryCom = ({ imgUrl, title, content, detail}) => {
     // 이미지 URL을 배열로 변환
-    const images = Array.isArray(imageUrl) ? imageUrl : [imageUrl];
+    const images = Array.isArray(imgUrl) ? imgUrl : [imgUrl];
 
     const sliderSettings = {
         dots: false,

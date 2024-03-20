@@ -8,7 +8,7 @@ const HistoryPoptest2 = () => {
     const [historyData, setHistoryData] = useState(null);
     const [moviesData, setMoviesData] = useState([]);
 
-    const historyId = 1499;
+    const historyId = 1298;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,7 +36,7 @@ const HistoryPoptest2 = () => {
                 {/* HistoryCom 컴포넌트 렌더링 */}
                 {historyData && (
                     <HistoryCom 
-                        imageUrl={historyData.imageUrl} 
+                        imgUrl={historyData.imgUrl} 
                         title={historyData.title} 
                         content={[historyData.content]} 
                         detail={historyData.detail} 
