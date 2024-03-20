@@ -9,6 +9,7 @@ import kakao.school.what.repository.HistoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HistoryPopService {
@@ -22,6 +23,10 @@ public class HistoryPopService {
 
     public HistoryPopDTO getHistoryPopDTO(Long historyId) {
         History history = historyRepository.findById(historyId).orElse(null);
+        List<HistoryDetail> historyDetails = historyDetailRepository.findByHistoryId(historyId);
+
+        // HistoryPopDTO에 detail 정보 추가
+        List<String> details = historyDetails.stream().map(HistoryDetail::getDetail).collect(Collectors.toList());
 
         return new HistoryPopDTO(
                 history.getTitle(),

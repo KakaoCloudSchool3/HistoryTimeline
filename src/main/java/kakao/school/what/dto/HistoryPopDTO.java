@@ -13,6 +13,7 @@ public class HistoryPopDTO {
     private Integer day;
     private String imgUrl;
     private String brief;
+   
 
 
 

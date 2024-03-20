@@ -6,6 +6,7 @@ import "./HistoryPop.css";
 
 const HistoryPoptest2 = () => {
     const [historyData, setHistoryData] = useState(null);
+    
     const [moviesData, setMoviesData] = useState([]);
 
     const historyId = 1298;
