@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./History.css";
+import HistoryImg, { handleImageClick } from './HistoryImg';
 
 // 스크롤 이벤트 처리
 const AnimatedText = ({ children }) => {
@@ -35,13 +36,18 @@ const HistoryCom = ({ imgUrl, title, content, detail}) => {
         cssEase: 'linear'
     };
 
+    const handleImageClick = () => {
+        
+    };
+
+
     return (
         <div>
             <Navbar className='hispopnav'>
                 <Container>
                     <Nav className="hispopnavlink">
                         <Nav.Link href="#">상세설명</Nav.Link>
-                        <Nav.Link href="/map">사진</Nav.Link>
+                        <Nav.Link href="#" onClick={handleImageClick}>사진</Nav.Link>
                         <Nav.Link href="#">youtube</Nav.Link>
                     </Nav>
                 </Container>

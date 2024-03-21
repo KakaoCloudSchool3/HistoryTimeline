@@ -17,7 +17,7 @@
     margin-top: 20px; 
     text-align: left; 
     line-height: 50px; 
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: Galmuri14, sans-serif;
 }
 
 .nav-link:hover {
@@ -94,7 +94,7 @@
 .historyTitle{
     margin-top: 30px;
     margin-left: 30px;
-    margin-bottom: -20px;
+    margin-bottom: -10px;
     color: #ffffff;
     font-family: 'Noto Sans KR', sans-serif; 
 }
@@ -111,7 +111,7 @@
     line-height: 200%;
     font-size: 115%;
     color: #ffffff;
-    font-family: 'Noto Sans KR', sans-serif; 
+    font-family: Galmuri14, sans-serif; 
 }
 
 .historyMemo2::-webkit-scrollbar {
@@ -143,5 +143,5 @@
     line-height: 200%;
     font-size: 115%;
     color: #ffffff;
-    font-family: 'Noto Sans KR', sans-serif; 
+    font-family: Galmuri14, sans-serif; 
 }
