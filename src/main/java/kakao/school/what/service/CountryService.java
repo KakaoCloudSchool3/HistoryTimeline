@@ -46,7 +46,7 @@ public class CountryService {
     private List<CountryResponseDto> CountryEntityToDto(List<Country> countries) {
         List<CountryResponseDto> dtoList = new ArrayList<>();
         for (Country country : countries) {
-            dtoList.add(new CountryResponseDto(country.getCountryId(), country.getName()));
+            dtoList.add(new CountryResponseDto(country.getCountryId(), country.getName(), country.getImgUrl()));
         }
         return dtoList;
 
