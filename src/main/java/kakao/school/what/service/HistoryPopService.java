@@ -37,6 +37,8 @@ public class HistoryPopService {
                 history.getImgUrl()
         );
     }
+
+
     public List<String> getHistoryDetail(Long historyId) {
         List<HistoryDetail> historyDetails = historyDetailRepository.findByHistoryId(historyId);
         return historyDetails.stream()

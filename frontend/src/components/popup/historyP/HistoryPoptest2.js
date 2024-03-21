@@ -6,10 +6,8 @@ import "./HistoryPop.css";
 
 const HistoryPoptest2 = () => {
     const [historyData, setHistoryData] = useState(null);
-    
     const [moviesData, setMoviesData] = useState([]);
-
-    const historyId = 1;
+    const historyId = 11;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,8 +31,7 @@ const HistoryPoptest2 = () => {
 
     return (
         <div className="HistoryPop">
-            <div className="history-container">
-                {/* HistoryCom 컴포넌트 렌더링 */}
+            <div className="history-container">                
                 {historyData && (
                     <HistoryCom 
                         imgUrl={historyData.imgUrl} 
@@ -45,8 +42,7 @@ const HistoryPoptest2 = () => {
                 )}
             </div>
             <div className="movie-container">
-                {/* MovieCom 컴포넌트 렌더링 및 moviesData 전달 */}
-                <MovieCom movies={moviesData} />
+                <MovieCom movies={moviesData}  />
             </div>
         </div>
     );

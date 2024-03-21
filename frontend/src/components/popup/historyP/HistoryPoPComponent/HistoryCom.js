@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./History.css";
 
+// 스크롤 이벤트 처리
 const AnimatedText = ({ children }) => {
     const { scrollYProgress } = useScroll();
     
@@ -17,10 +18,11 @@ const AnimatedText = ({ children }) => {
     );
 };
 
+// 역사 정보 컴포넌트 (데이터)
 const HistoryCom = ({ imgUrl, title, content, detail}) => {
     // 이미지 URL을 배열로 변환
     const images = Array.isArray(imgUrl) ? imgUrl : [imgUrl];
-
+    // 역사 이미지 슬라이더 설정
     const sliderSettings = {
         dots: false,
         infinite: true,
