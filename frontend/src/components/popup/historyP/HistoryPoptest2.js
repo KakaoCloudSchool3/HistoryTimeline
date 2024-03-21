@@ -4,21 +4,23 @@ import HistoryCom from './HistoryPoPComponent/HistoryCom';
 import MovieCom from './HistoryPoPComponent/MovieCom';
 import "./HistoryPop.css";
 
+// historyPop 전체 컴포넌트 
 const HistoryPoptest2 = () => {
     const [historyData, setHistoryData] = useState(null);
     const [moviesData, setMoviesData] = useState([]);
     const historyId = 11;
 
+    // 컴포넌트가 마운트될 때 데이터를 불러옴 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // 백엔드에서 히스토리 데이터 가져오기
+                // 백엔드에서 역사 데이터 가져옴
                 const historyResponse = await axios.get(`http://localhost:8081/historyPop/${historyId}`);
                 const transformedHistoryData = { ...historyResponse.data, content: historyResponse.data.brief };
                 transformedHistoryData.detail = historyResponse.data.detail;
                 setHistoryData(transformedHistoryData);
 
-                // 백엔드에서 영화 데이터 가져오기
+                // 백엔드에서 영화 데이터 가져옴
                 const moviesResponse = await axios.get('http://localhost:8081/movies');
                 setMoviesData(moviesResponse.data);
             } catch (error) {
