@@ -8,7 +8,7 @@ import "./HistoryPop.css";
 const HistoryPoptest2 = () => {
     const [historyData, setHistoryData] = useState(null);
     const [moviesData, setMoviesData] = useState([]);
-    const historyId = 11;
+    const historyId = 107;
 
     // 컴포넌트가 마운트될 때 데이터를 불러옴 
     useEffect(() => {
@@ -31,12 +31,15 @@ const HistoryPoptest2 = () => {
         fetchData();
     }, [historyId]);
 
+    // 대체 기본 이미지 URL
+    const defaultImageUrl = "https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/service/a85d0594017900001.jpg?type=thumb&opt=C800x400";
+
     return (
         <div className="HistoryPop">
             <div className="history-container">                
                 {historyData && (
                     <HistoryCom 
-                        imgUrl={historyData.imgUrl} 
+                        imgUrl={historyData.imgUrl || defaultImageUrl}  
                         title={historyData.title} 
                         content={[historyData.content]} 
                         detail={historyData.detail} 
