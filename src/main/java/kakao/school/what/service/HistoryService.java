@@ -33,7 +33,7 @@ public class HistoryService {
 
     public List<History>getHistory(Long historyId){
         return historyRepository.findAllByHistoryId(historyId);
-    };
+    }
 
     // 우선순위가 1인 한국 역사 데이터 불러옴. 우선 순위와 나라 변수 값을 바꾸면 다른 나라 데이터 얻어올 수 있음.
     public List<HistoryMainLineDto> getPriorityOneInKorea() {

@@ -27,7 +27,6 @@ function InsertHistory(props) {
                 "/history/one?historyId=" + props.postId
             );
             setData(response.data[0]);
-
             const responseDetail = await axios.get(
                 "/historyDetail/one?historyId=" + props.postId
             );
@@ -37,19 +36,13 @@ function InsertHistory(props) {
         }
     }, []);
 
-    const getCountryIdByName = (countryName) => {
-        const selectedCountry = countries.find(country => country.name === countryName);
-        return selectedCountry ? selectedCountry.countryId : null;
-    };
-
     const save = async () => {
         const confirmed = window.confirm("저장하시겠습니까?");
-
-        if (confirmed && getCountryIdByName(data.countryId) != null) {
+        if (confirmed) {
             try {
                 const formData = {
                     title: data.title,
-                    countryId: getCountryIdByName(data.countryId),
+                    countryId: data.countryId,
                     year: data.year,
                     month: data.month,
                     day: data.day,
@@ -58,9 +51,7 @@ function InsertHistory(props) {
                     brief: data.brief,
                     detail: detail.detail,
                 };
-                console.log(formData);
-                await axios.post(`//localhost:8080/saveHistory`, formData);
-                // navigate("/adminList");
+                await axios.post(`/saveHistory`, formData);
                 props.setIsVisible(false);
             } catch (error) {
                 console.error("Error saving data:", error);
@@ -74,7 +65,6 @@ function InsertHistory(props) {
     const cancel = () => {
         const confirmed = window.confirm("취소하시겠습니까?");
         if (confirmed) {
-            // navigate("/adminList");
             props.setIsVisible(false);
         }
     };
@@ -84,15 +74,7 @@ function InsertHistory(props) {
     }, [getData]);
 
     return (
-        <div
-            className="col-md-5"
-            // style={{
-            //     background: "white",
-            //     padding: "10px",
-            //     width: "80%",
-            //     textAlign: "center",
-            // }}
-        >
+        <div className="col-md-5">
             <form>
                 <div className="input-group mb-4">
                     <div className="col-2 input-group-prepend">
@@ -119,17 +101,18 @@ function InsertHistory(props) {
                     </div>
                     <select
                         className="custom-select col-10 form-select"
+                        name="countryOption"
+                        value={data.countryId || ""}
+                        required
                         onChange={(e) =>
                             setData({ ...data, countryId: e.target.value })
                         }
-                        value={data.countryId || ""}
-                        required
                     >
                         <option value="" disabled>
                             국가 선택
                         </option>
                         {countries.map((country) => (
-                            <option key={country.id} value={country.id}>
+                            <option key={country.countryId} value={country.countryId} selected={country.countryId === data.countryId}>
                                 {country.name}
                             </option>
                         ))}

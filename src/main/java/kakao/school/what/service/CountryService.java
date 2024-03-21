@@ -28,7 +28,7 @@ public class CountryService {
             countryResponseDto.setCountryId(country.getCountryId());
             countryResponseDto.setName(country.getName());
 
-            log.info("^MS^ CountryService : " + countryResponseDto.toString());
+            log.info("^MS^ CountryService : " + countryResponseDto);
 
             return countryResponseDto;
         } else {
