@@ -9,7 +9,7 @@ const HistoryPoptest2 = () => {
     
     const [moviesData, setMoviesData] = useState([]);
 
-    const historyId = 1298;
+    const historyId = 1;
 
     useEffect(() => {
         const fetchData = async () => {

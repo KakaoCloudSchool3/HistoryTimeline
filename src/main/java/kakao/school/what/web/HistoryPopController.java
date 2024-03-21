@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/historyPop")
 public class HistoryPopController {
@@ -27,6 +29,10 @@ public class HistoryPopController {
         if (historyPopDTO == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        List<String> details = historyPopService.getHistoryDetail(historyId);
+        historyPopDTO.setDetail(details);
+
         return new ResponseEntity<>(historyPopDTO, HttpStatus.OK);
     }
 

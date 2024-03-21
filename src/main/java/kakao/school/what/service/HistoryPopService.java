@@ -37,10 +37,12 @@ public class HistoryPopService {
                 history.getImgUrl()
         );
     }
-
-    public List<HistoryDetail> getHistoryDetail(Long historyId){
-        return historyDetailRepository.findByHistoryId(historyId);
-    };
+    public List<String> getHistoryDetail(Long historyId) {
+        List<HistoryDetail> historyDetails = historyDetailRepository.findByHistoryId(historyId);
+        return historyDetails.stream()
+                .map(HistoryDetail::getDetail)
+                .collect(Collectors.toList());
+    }
 
     public HistoryDetailPopDTO getHistoryDetailPopDTO(Long historyDetailId) {
         HistoryDetail historyDetail = historyDetailRepository.findById(historyDetailId).orElse(null);

@@ -58,7 +58,7 @@ const HistoryCom = ({ imgUrl, title, content, detail}) => {
                         ))}
                     </Slider>            
                     <h1 className='historyTitle'>{title}</h1>
-                    <div className="historyMemo">
+                    <div className="historyMemo" >
                         {content.map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>
                         ))}
