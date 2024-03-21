@@ -81,4 +81,13 @@ public class HistoryController {
 
     }
 
+    // 나라의 데이터가 있는 지 확인
+    @GetMapping("/checkData")
+    @ResponseBody
+    public boolean getExistenceHistory(
+            @RequestParam("countryId") Long countryId
+    ) {
+        return historyService.checkExistenceHistoryByCountryId(countryId);
+    }
+
 }

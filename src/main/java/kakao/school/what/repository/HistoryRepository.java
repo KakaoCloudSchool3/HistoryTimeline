@@ -5,6 +5,7 @@ import kakao.school.what.dto.request.HistoryRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,4 +30,7 @@ public interface HistoryRepository extends JpaRepository<History, Long> {
 
     // History Id로 History를 불러옴
     History findByHistoryId(Long HistoryId);
+
+    // Country Id로 해당 나라의 데이터가 존재하는지 반환
+    boolean existsByCountryId(Long countryId);
 }

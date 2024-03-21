@@ -12,4 +12,5 @@ import lombok.ToString;
 public class CountryResponseDto {
     private Long countryId;
     private String name;
+    private String imgUrl;
 }

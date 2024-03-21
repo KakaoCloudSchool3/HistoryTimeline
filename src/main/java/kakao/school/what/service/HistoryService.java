@@ -75,6 +75,11 @@ public class HistoryService {
         historyRepository.delete(historyRepository.findByHistoryId(historyId));
     }
 
+    // 나라 아이디로 History가 존재하는지 확인하는 메소드
+    public boolean checkExistenceHistoryByCountryId(Long countryId) {
+        return historyRepository.existsByCountryId(countryId);
+    }
+
     // History Entity Page를 History Response Timeline Dto로 변경하는 메소드
     private Page<HistoryResponseTimelineDto> historyEntityToTimelineDto(Page<History> entityPage) {
         Page<HistoryResponseTimelineDto> dtoPage = entityPage
