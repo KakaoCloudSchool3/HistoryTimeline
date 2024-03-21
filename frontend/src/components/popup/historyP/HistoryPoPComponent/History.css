@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
 
 .hispopnav{
-    background-color: #000000;
+    background-color: #f87c56;
     height: 50px;
     display: flex;
     justify-content: left; 
@@ -78,7 +78,7 @@
 }
 
 .slick-dots li.slick-active button {
-    background-color: #a0a5eb;
+    background-color: #f87c56;
 }
 
 .historyPhotoSlide{
@@ -123,7 +123,7 @@
 }
 
 .historyMemo2::-webkit-scrollbar-thumb { 
-    background-color: #ffffff;
+    background-color: #f87c56;
 }
 
 .historyMemo2::-webkit-scrollbar-button {
@@ -134,7 +134,7 @@
     padding: 1 0.5em;
     max-width: auto;
     margin : 0 auto;
-    height: 400px;
+    height: 250px;
     overflow: auto;
     overflow-y: auto;
     margin-left: 30px;
