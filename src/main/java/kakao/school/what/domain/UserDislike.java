@@ -4,16 +4,16 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "dislike")
 @Data
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Dislike {
+public class UserDislike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "serial")

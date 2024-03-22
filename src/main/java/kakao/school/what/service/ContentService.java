@@ -12,10 +12,10 @@ public class ContentService {
     @Autowired
     private ContentRepository contentRepository;
 
-    // contentId와 title을 기반으로 Content 객체를 찾아 반환
-    public Content getContentByIdAndTitle(Long contentId, String title) {
+    // contentId를 기반으로 Content 객체를 찾아 반환
+    public Content getContentById(Long contentId) {
         // Optional을 사용하여 Content 객체를 안전하게 다룸.
-        return contentRepository.findByContentIdAndTitle(contentId, title)
+        return contentRepository.findById(contentId)
                 .orElseThrow(() -> new NoSuchElementException("해당하는 Content가 존재하지 않습니다."));
     }
 }
