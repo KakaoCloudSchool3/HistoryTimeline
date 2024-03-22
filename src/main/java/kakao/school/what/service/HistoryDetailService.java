@@ -16,7 +16,7 @@ public class HistoryDetailService {
     // historyid에 해당하는 detail 반환
     public List<HistoryDetail> getHistoryDetail(Long historyId){
         return historyDetailRepository.findByHistoryId(historyId);
-    };
+    }
 
     public HistoryDetailPopDTO getHistoryDetailPopDTO(Long historyDetailId) {
         HistoryDetail historyDetail = historyDetailRepository.findById(historyDetailId).orElse(null);

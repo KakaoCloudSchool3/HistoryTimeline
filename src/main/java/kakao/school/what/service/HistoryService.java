@@ -33,7 +33,7 @@ public class HistoryService {
 
     public List<History>getHistory(Long historyId){
         return historyRepository.findAllByHistoryId(historyId);
-    };
+    }
 
     // 우선순위가 1인 한국 역사 데이터 불러옴. 우선 순위와 나라 변수 값을 바꾸면 다른 나라 데이터 얻어올 수 있음.
     public List<HistoryMainLineDto> getPriorityOneInKorea() {
@@ -73,6 +73,11 @@ public class HistoryService {
     @Transactional
     public void deleteHistoryByHistoryId(Long historyId) {
         historyRepository.delete(historyRepository.findByHistoryId(historyId));
+    }
+
+    // 나라 아이디로 History가 존재하는지 확인하는 메소드
+    public boolean checkExistenceHistoryByCountryId(Long countryId) {
+        return historyRepository.existsByCountryId(countryId);
     }
 
     // History Entity Page를 History Response Timeline Dto로 변경하는 메소드
