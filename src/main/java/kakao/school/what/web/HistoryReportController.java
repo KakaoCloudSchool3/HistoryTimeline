@@ -2,12 +2,14 @@ package kakao.school.what.web;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import kakao.school.what.dto.request.HistoryReportRequestDto;
+import kakao.school.what.dto.response.HistoryReportResponseListDto;
 import kakao.school.what.service.HistoryReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Tag(name = "HistoryReportController", description = "History Report 관련 Controller")
@@ -20,4 +22,14 @@ public class HistoryReportController {
     public void saveHistoryReport(@RequestBody HistoryReportRequestDto dto) {
         historyReportService.saveHistoryReport(dto);
     }
+
+    // report 리스트 불러오기
+    @GetMapping("/report/list")
+    public Page<HistoryReportResponseListDto> getHistoryReportResponse(
+            @RequestParam("page") int page
+    ) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return historyReportService.listHistoryReportDto(pageable);
+    }
+
 }
