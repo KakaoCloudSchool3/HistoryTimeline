@@ -46,8 +46,8 @@ public class CountryController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-  
-    @GetMapping("/countries")
+
+    @GetMapping("")
     @ResponseBody
     public List<CountryResponseDto> getCountryList() {
         return countryService.listCountryDto();
