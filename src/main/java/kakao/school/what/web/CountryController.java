@@ -26,8 +26,6 @@ import java.util.List;
  * @author minsun
  * @description countryId에 해당하는 나라 정보(countryId, name) 출력
  * @path /api/countries/{countryId}
- *
- * 추후 front에서 비교하여 사용하면 될 것 같음... 맞겠지..?
  */
 @RestController
 @RequestMapping("/countries")
@@ -36,6 +34,8 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
+
+    // countryid값 확인 용도. countryid + name 반환함.
     @GetMapping("/{countryId}")
     public ResponseEntity<CountryResponseDto> getCountryById(@PathVariable Long countryId) {
         CountryResponseDto countryResponseDto = countryService.getCountryById(countryId);

@@ -28,7 +28,7 @@ public class CountryService {
             countryResponseDto.setCountryId(country.getCountryId());
             countryResponseDto.setName(country.getName());
 
-            log.info("^MS^ CountryService : " + countryResponseDto.toString());
+            log.info("^MS^ CountryService : " + countryResponseDto);
 
             return countryResponseDto;
         } else {
@@ -46,7 +46,7 @@ public class CountryService {
     private List<CountryResponseDto> CountryEntityToDto(List<Country> countries) {
         List<CountryResponseDto> dtoList = new ArrayList<>();
         for (Country country : countries) {
-            dtoList.add(new CountryResponseDto(country.getCountryId(), country.getName()));
+            dtoList.add(new CountryResponseDto(country.getCountryId(), country.getName(), country.getImgUrl()));
         }
         return dtoList;
 
