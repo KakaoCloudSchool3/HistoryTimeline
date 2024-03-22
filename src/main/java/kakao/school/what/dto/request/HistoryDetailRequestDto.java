@@ -1,10 +1,8 @@
 package kakao.school.what.dto.request;
 
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Setter
-@ToString
+@Data
 public class HistoryDetailRequestDto {
     private Long historyId;
     private String detail;

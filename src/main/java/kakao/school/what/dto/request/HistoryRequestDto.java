@@ -1,21 +1,16 @@
 package kakao.school.what.dto.request;
 
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-import java.time.LocalDateTime;
-
-@Setter
-@ToString
+@Data
 public class HistoryRequestDto {
     private String title;
     private int priority;
-    private int countryId;
+    private Long countryId;
     private String brief;
     private int year;
     private int month;
     private int day;
     private String imgUrl;
-
-    private HistoryDetailRequestDto historyDetailRequestDto;
+    private String detail;
 }
