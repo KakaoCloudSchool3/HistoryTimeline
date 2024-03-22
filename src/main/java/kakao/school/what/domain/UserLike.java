@@ -5,10 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "likes") // 실제 데이터베이스에 생성될 테이블 이름을 지정
 @Data
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
