@@ -47,7 +47,7 @@ public class CountryController {
         }
     }
   
-    @GetMapping("")
+    @GetMapping("/countries")
     @ResponseBody
     public List<CountryResponseDto> getCountryList() {
         return countryService.listCountryDto();

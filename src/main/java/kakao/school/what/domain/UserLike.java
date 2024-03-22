@@ -8,11 +8,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "likes") // 실제 데이터베이스에 생성될 테이블 이름을 지정
+@Table(name = "like") // 실제 데이터베이스에 생성될 테이블 이름을 지정
 @Data
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Like {
+public class UserLike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
