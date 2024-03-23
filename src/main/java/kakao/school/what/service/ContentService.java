@@ -18,4 +18,9 @@ public class ContentService {
         return contentRepository.findById(contentId)
                 .orElseThrow(() -> new NoSuchElementException("해당하는 Content가 존재하지 않습니다."));
     }
+
+    public Content saveContent(Content content) {
+        return contentRepository.save(content);
+    }
+
 }
