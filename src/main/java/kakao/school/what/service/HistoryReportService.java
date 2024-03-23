@@ -40,4 +40,9 @@ public class HistoryReportService {
             )
         );
     }
+
+    // HistoryReportId를 받아 해당 Report 삭제
+    public void deleteHistoryReportById(Long historyReportId) {
+        historyReportRepository.delete(historyReportRepository.findByHistoryReportId(historyReportId));
+    }
 }

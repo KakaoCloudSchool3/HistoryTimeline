@@ -35,9 +35,9 @@ public class HistoryReportController {
     // report 삭제하기
     @DeleteMapping("/report/delete")
     public void deleteHistoryReport(
-            @RequestParam("history_report_id") long historyReportId
+            @RequestParam("historyReportId") long historyReportId
     ) {
-
+        historyReportService.deleteHistoryReportById(historyReportId);
     }
 
 }
