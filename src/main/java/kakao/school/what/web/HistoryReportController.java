@@ -32,4 +32,12 @@ public class HistoryReportController {
         return historyReportService.listHistoryReportDto(pageable);
     }
 
+    // report 삭제하기
+    @DeleteMapping("/report/delete")
+    public void deleteHistoryReport(
+            @RequestParam("history_report_id") long historyReportId
+    ) {
+
+    }
+
 }
