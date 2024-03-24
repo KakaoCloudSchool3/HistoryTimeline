@@ -1,5 +1,6 @@
 package kakao.school.what.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -36,4 +39,8 @@ public class Content {
     @Column(name = "updated_at")
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Comment> comments;
 }
