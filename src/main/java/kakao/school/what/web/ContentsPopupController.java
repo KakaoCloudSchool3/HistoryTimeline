@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
+
+
 
 // Contents 관련 도메인 클래스와 서비스 클래스를 import
 import kakao.school.what.domain.Content;
@@ -20,5 +24,10 @@ public class ContentsPopupController {
     public Content getContentById(@RequestParam(value = "contentId") Long contentId) {
         // contentId에 해당하는 Content 객체를 반환하기
         return contentService.getContentById(contentId);
+    }
+
+    @PostMapping("/ContentsPopup")
+    public Content saveContent(@RequestBody Content content) {
+        return contentService.saveContent(content);
     }
 }

@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserLikeRepository extends JpaRepository<UserLike, Long> {
 
-    @Query(value = "SELECT COUNT(*) FROM `like` WHERE content_id = :contentId", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM `likes` WHERE content_id = :contentId", nativeQuery = true)
     Long countByContentId(Long contentId);
 }
