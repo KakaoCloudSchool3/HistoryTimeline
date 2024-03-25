@@ -2,7 +2,9 @@ package kakao.school.what.web;
 
 import kakao.school.what.service.UserLikeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +22,11 @@ public class UserLikeController {
     @GetMapping("/likes/count-by-title")
     public Long getContentLikesCountByTitle(@RequestParam String title) {
         return userLikeService.getContentLikesCountByTitle(title);
+    }
+
+    @PostMapping("/likes/add")
+    public ResponseEntity<?> addLikeByTitle(@RequestParam String title, @RequestParam Long userId) {
+        userLikeService.addLikeByTitleAndUserId(title, userId);
+        return ResponseEntity.ok().build();
     }
 }
