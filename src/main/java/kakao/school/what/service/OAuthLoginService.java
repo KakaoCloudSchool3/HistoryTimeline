@@ -1,6 +1,6 @@
 package kakao.school.what.service;
 
-import kakao.school.what.domain.Member;
+import kakao.school.what.domain.User;
 import kakao.school.what.dto.oauth.OAuthInfoResponse;
 import kakao.school.what.repository.MemberRepository;
 import kakao.school.what.util.OAuthLoginParams;
@@ -17,23 +17,20 @@ public class OAuthLoginService {
     public OAuthInfoResponse login(OAuthLoginParams params) {
         OAuthInfoResponse oAuthInfoResponse = requestOAuthInfoService.request(params);
         System.out.println("oAuthInfoResponse = " + oAuthInfoResponse.getEmail());
-        Long memberId = findOrCreateMember(oAuthInfoResponse);
+        Long UserId = findOrCreateUser(oAuthInfoResponse);
         return oAuthInfoResponse;
     }
 
-    private Long findOrCreateMember(OAuthInfoResponse oAuthInfoResponse) {
+    private Long findOrCreateUser(OAuthInfoResponse oAuthInfoResponse) {
         return memberRepository.findByEmail(oAuthInfoResponse.getEmail())
-                .map(Member::getId)
-                .orElseGet(() -> newMember(oAuthInfoResponse));
+                .map(User::getUserId)
+                .orElseGet(() -> createUser(oAuthInfoResponse));
     }
 
-    private Long newMember(OAuthInfoResponse oAuthInfoResponse) {
-        Member member = Member.builder()
-                .email(oAuthInfoResponse.getEmail())
-                .nickname(oAuthInfoResponse.getNickname())
-                .oAuthProvider(oAuthInfoResponse.getOAuthProvider())
-                .build();
-
-        return memberRepository.save(member).getId();
+    private Long createUser(OAuthInfoResponse oAuthInfoResponse) {
+        User User = new User(oAuthInfoResponse.getEmail(),
+                oAuthInfoResponse.getNickname(),
+                oAuthInfoResponse.getOAuthProvider());
+        return memberRepository.save(User).getUserId();
     }
 }

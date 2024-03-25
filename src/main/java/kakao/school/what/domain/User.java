@@ -1,6 +1,9 @@
 package kakao.school.what.domain;
 
 import jakarta.persistence.*;
+import kakao.school.what.util.OAuthProvider;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -28,4 +31,18 @@ public class User {
     @Column(name = "age_type")
     private Integer ageType;
 
+    private String email;
+
+//    private OAuthProvider oAuthProvider;
+    public User(String name) {
+        this.email = email;
+        this.name = name;
+
+    }
+
+    public User(String email, String nickname, OAuthProvider oAuthProvider) {
+        this.email = email;
+        this.name = name;
+        this.oAuthProvider = oAuthProvider;
+    }
 }
