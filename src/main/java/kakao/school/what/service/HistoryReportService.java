@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class HistoryReportService {
@@ -39,5 +39,10 @@ public class HistoryReportService {
                     entity.getCreatedAt().format(DateTimeFormatter.ISO_DATE)
             )
         );
+    }
+
+    // HistoryReportId를 받아 해당 Report 삭제
+    public void deleteHistoryReportById(Long historyReportId) {
+        historyReportRepository.delete(historyReportRepository.findByHistoryReportId(historyReportId));
     }
 }

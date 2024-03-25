@@ -11,4 +11,7 @@ public interface HistoryReportRepository extends JpaRepository<HistoryReport, Lo
 
     // 제보들을 페이지로 불러오는 메소드
     Page<HistoryReport> findAll(Pageable pageable);
+
+    // id로 제보를 찾는 메소드
+    HistoryReport findByHistoryReportId(Long historyReportId);
 }
