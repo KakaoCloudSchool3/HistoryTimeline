@@ -6,7 +6,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class HistoryDetailPopDTO {
-    private final String detail;
+    private String detail;
 
     public HistoryDetailPopDTO(String detail) {
         this.detail = detail;
