@@ -1,5 +1,8 @@
 package kakao.school.what.service;
 
+import kakao.school.what.domain.Member;
+import kakao.school.what.dto.oauth.OAuthInfoResponse;
+
 import kakao.school.what.domain.User;
 import kakao.school.what.dto.oauth.OAuthInfoResponse;
 import kakao.school.what.repository.UserRepository;
@@ -10,6 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class OAuthLoginService {
+//    private final MemberRepository memberRepository;
+
 //    private final AuthTokensGenerator authTokensGenerator;
     private final RequestOAuthInfoService requestOAuthInfoService;
 
