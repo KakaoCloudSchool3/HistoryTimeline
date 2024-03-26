@@ -1,9 +1,13 @@
 package kakao.school.what.web;
 
+import kakao.school.what.domain.UserDislike;
 import kakao.school.what.service.UserDislikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserDislikeController {
@@ -15,14 +19,13 @@ public class UserDislikeController {
         this.userDislikeService = userDislikeService;
     }
 
-    @GetMapping("/dislikes/count-by-title")
-    public Long getContentDislikesCountByTitle(@RequestParam String title) {
-        return userDislikeService.getContentDislikesCountByTitle(title);
+    @PostMapping("/dislikes")
+    public UserDislike saveUserDislike(@RequestParam Long userId, @RequestParam Long contentId) {
+        return userDislikeService.saveUserDislike(userId, contentId);
     }
-
-    @PostMapping("/dislikes/add")
-    public ResponseEntity<?> addDislikeByTitle(@RequestParam String title, @RequestParam Long userId) {
-        userDislikeService.addDislikeByTitleAndUserId(title, userId);
-        return ResponseEntity.ok().build();
+    @GetMapping("/dislikes/count")
+    public ResponseEntity<Long> getDislikeCount(@RequestParam Long contentId) {
+        Long count = userDislikeService.countByContentId(contentId);
+        return ResponseEntity.ok(count);
     }
 }
