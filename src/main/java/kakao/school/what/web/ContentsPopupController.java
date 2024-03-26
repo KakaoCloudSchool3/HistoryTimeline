@@ -26,8 +26,4 @@ public class ContentsPopupController {
         return contentService.getContentById(contentId);
     }
 
-    @PostMapping("/ContentsPopup")
-    public Content saveContent(@RequestBody Content content) {
-        return contentService.saveContent(content);
-    }
 }
