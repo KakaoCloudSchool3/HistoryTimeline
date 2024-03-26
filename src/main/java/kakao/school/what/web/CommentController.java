@@ -16,16 +16,15 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/comments/by-title")
-    public List<Comment> getCommentsByTitle(@RequestParam(value = "title") String title) {
-        return commentService.getCommentsByTitle(title);
-    }
-
-    // 유저 ID를 포함하여 댓글 저장하는 API
     @PostMapping("/comments/save")
-    public Comment saveComment(@RequestParam(value = "title") String title,
+    public Comment saveComment(@RequestParam(value = "contentId") Long contentId,
                                @RequestParam(value = "note") String note,
                                @RequestParam(value = "userId") Long userId) {
-        return commentService.saveComment(title, note, userId);
+        return commentService.saveComment(contentId, note, userId);
+    }
+
+    @GetMapping("/comments")
+    public List<Comment> getCommentsByContentId(@RequestParam(value = "contentId") Long contentId) {
+        return commentService.findCommentsByContentId(contentId);
     }
 }
