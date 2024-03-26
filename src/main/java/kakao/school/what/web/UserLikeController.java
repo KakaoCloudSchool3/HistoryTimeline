@@ -1,5 +1,6 @@
 package kakao.school.what.web;
 
+import kakao.school.what.domain.UserLike;
 import kakao.school.what.service.UserLikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +19,14 @@ public class UserLikeController {
         this.userLikeService = userLikeService;
     }
 
-    // UserLikeController 클래스에 추가할 엔드포인트 메서드
-    @GetMapping("/likes/count-by-title")
-    public Long getContentLikesCountByTitle(@RequestParam String title) {
-        return userLikeService.getContentLikesCountByTitle(title);
+    @PostMapping("/likes")
+    public UserLike saveUserLike(@RequestParam Long userId, @RequestParam Long contentId) {
+        return userLikeService.saveUserLike(userId, contentId);
     }
 
-    @PostMapping("/likes/add")
-    public ResponseEntity<?> addLikeByTitle(@RequestParam String title, @RequestParam Long userId) {
-        userLikeService.addLikeByTitleAndUserId(title, userId);
-        return ResponseEntity.ok().build();
+    @GetMapping("/likes/count")
+    public ResponseEntity<Long> getLikesCount(@RequestParam Long contentId) {
+        Long count = userLikeService.countLikesByContentId(contentId);
+        return ResponseEntity.ok(count);
     }
 }
