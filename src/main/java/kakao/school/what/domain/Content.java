@@ -23,11 +23,11 @@ public class Content {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "content_type")
-    private Integer contentType;
+    @Column(name = "country_id")
+    private Long countryId;
 
-    @Column(name = "img_url")
-    private String imgUrl;
+    @Column(name = "tag")
+    private Integer tag;
 
     @Column(name = "created_at")
     @CreatedDate
@@ -36,4 +36,5 @@ public class Content {
     @Column(name = "updated_at")
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
 }

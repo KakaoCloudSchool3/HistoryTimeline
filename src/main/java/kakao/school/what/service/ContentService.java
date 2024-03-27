@@ -5,17 +5,9 @@ import kakao.school.what.repository.ContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class ContentService {
 
-    @Autowired
-    private ContentRepository contentRepository;
-
-    // contentId를 기반으로 Content 객체를 찾아 반환
-    public Content getContentById(Long contentId) {
-        // Optional을 사용하여 Content 객체를 안전하게 다룸.
-        return contentRepository.findById(contentId)
-                .orElseThrow(() -> new NoSuchElementException("해당하는 Content가 존재하지 않습니다."));
-    }
 }
