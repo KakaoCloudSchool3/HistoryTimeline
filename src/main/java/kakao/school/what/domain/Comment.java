@@ -1,6 +1,5 @@
 package kakao.school.what.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,11 +16,8 @@ public class Comment {
     @Column(name = "user_id")
     private Long userId;
 
-    // contentId 필드 제거
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "content_id")
-    @JsonBackReference
-    private Content content;
+    @Column(name = "content_id")
+    private Long contentId;
 
     @Column(name = "note")
     private String note;

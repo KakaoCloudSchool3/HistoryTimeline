@@ -36,6 +36,11 @@ public class KakaoInfoResponse implements OAuthInfoResponse {
     }
 
     @Override
+    public String getGender() {return "";}
+
+    @Override
+    public String getAge() {return "";}
+    @Override
     public OAuthProvider getOAuthProvider() {
         return OAuthProvider.KAKAO;
     }
