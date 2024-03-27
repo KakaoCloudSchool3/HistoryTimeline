@@ -44,12 +44,12 @@ public class HistoryPopController {
     }
 
     @GetMapping("/content")
-    public ResponseEntity<List<Content>> getContentByCountryAndYear(@RequestParam Long countryId, @RequestParam Integer year) {
-        List<Content> contents = historyPopService.getContentByCountryAndYear(countryId, year);
-        if (contents.isEmpty()) {
+    public ResponseEntity<List<String>> getContentByCountryAndYear(@RequestParam Long countryId, @RequestParam Integer year) {
+        List<String> movieTitles = historyPopService.getMovieTitlesByCountryAndYear(countryId, year);
+        if (movieTitles.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(contents, HttpStatus.OK);
+        return new ResponseEntity<>(movieTitles, HttpStatus.OK);
     }
 
 

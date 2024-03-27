@@ -70,6 +70,10 @@ public class HistoryPopService {
     }
 
 
-
-
+    public List<String> getMovieTitlesByCountryAndYear(Long countryId, Integer year) {
+        List<Content> contents = contentRepository.findByCountryIdAndTag(countryId, year / 100);
+        return contents.stream()
+                .map(Content::getTitle)
+                .collect(Collectors.toList());
+    }
 }
