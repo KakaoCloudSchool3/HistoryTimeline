@@ -1,11 +1,14 @@
 package kakao.school.what.service;
 
+import kakao.school.what.domain.Content;
 import kakao.school.what.domain.History;
 import kakao.school.what.domain.HistoryDetail;
 import kakao.school.what.dto.HistoryDetailPopDTO;
 import kakao.school.what.dto.HistoryPopDTO;
+import kakao.school.what.repository.ContentRepository;
 import kakao.school.what.repository.HistoryDetailRepository;
 import kakao.school.what.repository.HistoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,5 +57,23 @@ public class HistoryPopService {
         return new HistoryDetailPopDTO(
                 historyDetail.getDetail()
         );
+    }
+    @Autowired
+    private ContentRepository contentRepository;
+
+    public List<Content> getContentByCountryAndYear(Long countryId, Integer year) {
+        // year 값의 앞 두 자리를 추출하여 태그 결정
+        Integer tag = year / 100;
+
+        // 국가와 태그에 해당하는 콘텐츠를 조회하여 반환
+        return contentRepository.findByCountryIdAndTag(countryId, tag);
+    }
+
+
+    public List<String> getMovieTitlesByCountryAndYear(Long countryId, Integer year) {
+        List<Content> contents = contentRepository.findByCountryIdAndTag(countryId, year / 100);
+        return contents.stream()
+                .map(Content::getTitle)
+                .collect(Collectors.toList());
     }
 }
