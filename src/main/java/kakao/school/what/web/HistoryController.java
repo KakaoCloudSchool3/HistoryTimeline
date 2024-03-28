@@ -27,6 +27,11 @@ public class HistoryController {
     public List<History> getHistory(@RequestParam(value = "historyId", required = false) Long historyId) {
         return historyService.getHistory(historyId);
     }
+    @GetMapping("/history/three")
+    public History getHistoryPop(@RequestParam(value = "historyId", required = false) Long historyId) {
+        return historyService.getHistoryPop(historyId);
+    }
+
 
     @GetMapping("/timeline/korea")
     @ResponseBody

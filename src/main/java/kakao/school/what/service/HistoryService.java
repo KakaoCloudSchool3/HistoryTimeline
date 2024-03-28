@@ -135,4 +135,25 @@ public class HistoryService {
         historyDetail.setDetail(requestDto.getDetail());
         return historyDetail;
     }
+
+    public History getHistoryPop(Long historyId) {
+        History history = historyRepository.findByHistoryId(historyId);
+
+        if (history != null) {
+            Long countryId = history.getCountryId();
+            Integer year = history.getYear();
+
+            // historyId, countryId, year을 가진 새로운 History 객체를 생성하여 반환
+            History result = new History();
+            result.setHistoryId(historyId);
+            result.setCountryId(countryId);
+            result.setYear(year);
+
+            return result;
+        } else {
+            // 가져온 history가 null이면 null 반환
+            return null;
+        }
+    }
+    
 }
