@@ -2,6 +2,7 @@ package kakao.school.what.web;
 
 import kakao.school.what.domain.Content;
 import kakao.school.what.dto.HistoryDetailPopDTO;
+import kakao.school.what.dto.HistoryPopContentDTO;
 import kakao.school.what.dto.HistoryPopDTO;
 import kakao.school.what.service.HistoryPopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/historyPop")
@@ -43,14 +45,24 @@ public class HistoryPopController {
         return new ResponseEntity<>(historyDetailPopDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/content")
-    public ResponseEntity<List<String>> getContentByCountryAndYear(@RequestParam Long countryId, @RequestParam Integer year) {
-        List<String> movieTitles = historyPopService.getMovieTitlesByCountryAndYear(countryId, year);
-        if (movieTitles.isEmpty()) {
+    @GetMapping("/content/{countryId}/{year}")
+    public ResponseEntity<List<HistoryPopContentDTO>> getContentByCountryAndYear(@PathVariable Long countryId, @PathVariable Integer year) {
+        List<Content> contents = historyPopService.getContentByCountryAndYear(countryId, year);
+        if (contents.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(movieTitles, HttpStatus.OK);
+
+        // Content를 HistoryPopContentDTO로 변환하여 반환
+        List<HistoryPopContentDTO> contentDTOs = contents.stream()
+                .map(content -> {
+                    HistoryPopContentDTO dto = new HistoryPopContentDTO();
+                    dto.setTitle(content.getTitle());
+                    dto.setCountryId(content.getCountryId());
+                    dto.setTag(content.getTag());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
     }
-
-
 }

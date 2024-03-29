@@ -16,6 +16,7 @@ public class HistoryPopDTO {
     private String imgUrl;
     private String brief;
     private List<String> detail;
+    private String contentTitle;
 
 
 
